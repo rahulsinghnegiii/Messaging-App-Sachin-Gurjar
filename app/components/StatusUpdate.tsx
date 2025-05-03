@@ -8,7 +8,7 @@ import { UserStatus } from '../types';
 interface StatusOption {
   value: UserStatus;
   label: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 const StatusUpdate: React.FC = () => {

@@ -1014,7 +1014,7 @@ const StatusUpdate: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Status options with icons
-  const statusOptions: { value: UserStatus; label: string; icon: JSX.Element }[] = [
+  const statusOptions: { value: UserStatus; label: string; icon: React.ReactNode }[] = [
     {
       value: 'online',
       label: 'Online',
@@ -1180,7 +1180,7 @@ interface EmojiPickerProps {
 
 interface EmojiCategory {
   name: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   emojis: string[];
 }
 

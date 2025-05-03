@@ -11,7 +11,7 @@ interface EmojiPickerProps {
 
 interface EmojiCategory {
   name: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   emojis: string[];
 }
 
