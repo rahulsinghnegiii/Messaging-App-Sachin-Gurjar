@@ -184,7 +184,7 @@ export const getMockMessagesForConversation = (conversationId: string, count: nu
 export const mockConversations = generateMockConversations();
 
 // Function to simulate sending a new message
-export const sendMessage = (
+export const createMockMessage = (
   conversationId: string, 
   content: string
 ): Message => {
@@ -340,7 +340,7 @@ export const MessageProvider: React.FC<{ children: ReactNode }> = ({ children })
     if (!selectedConversationId || !content.trim()) return;
     
     // In a real app, this would be an API call
-    const newMessage = sendMessage(selectedConversationId, content);
+    const newMessage = createMockMessage(selectedConversationId, content);
     
     // Add to local messages
     setMessages(prev => [...prev, newMessage]);
