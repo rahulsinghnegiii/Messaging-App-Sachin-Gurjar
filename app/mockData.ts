@@ -1,4 +1,4 @@
-import { User, Message, Conversation, UserStatus, MessageStatus } from './types';
+import { User, Message, Conversation, MessageStatus } from './types';
 
 // Generate a random UUID
 const generateId = (): string => {

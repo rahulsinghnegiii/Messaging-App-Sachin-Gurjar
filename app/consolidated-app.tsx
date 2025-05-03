@@ -1,6 +1,5 @@
 "use client";
 
-import { Metadata } from "next";
 import React, { createContext, useState, useContext, ReactNode, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -527,7 +526,6 @@ const UIContext = createContext<UIContextType | undefined>(undefined);
 
 export const UIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [selectedConversationId, setSelectedConversationId] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Check system preferences for dark mode on initial load
@@ -561,7 +559,7 @@ export const UIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     <UIContext.Provider
       value={{
         isMobileMenuOpen,
-        selectedConversationId,
+        selectedConversationId: null,
         isDarkMode,
         toggleMobileMenu,
         toggleDarkMode,
@@ -649,7 +647,7 @@ const Layout: React.FC<{ sidebar: React.ReactNode; content: React.ReactNode }> =
   React.useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [isMobileMenuOpen, closeMobileMenu]);
+  }, [isMobileMenuOpen, closeMobileMenu, handleResize]);
 
   return (
     <div className="flex h-full overflow-hidden">
@@ -926,8 +924,8 @@ const UserItem: React.FC<{ user: User; isSelected: boolean; onSelect: () => void
   isSelected,
   onSelect 
 }) => {
-  const { conversations } = useMessage();
   const { closeMobileMenu } = useUI();
+  const { conversations } = useMessage();
   
   // Find conversation for this user to get unread count
   const conversation = conversations.find(
